@@ -162,4 +162,4 @@ if (x):
   x = float(x)
 
 if (eqn_str and x):
-  st.write(evaluate(str_to_eqn(eqn_str), x))
+  st.subheader(evaluate(str_to_eqn(eqn_str), x))
