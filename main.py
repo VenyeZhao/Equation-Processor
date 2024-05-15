@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+st.write("This was created by Venye Zhao. It is a simple equation processor that takes in an input equation and value for the variable before calculating the result.")
+
 st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
 
