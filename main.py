@@ -5,6 +5,15 @@ import pandas as pd
 st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
 
+def to_float(x):
+  if (!isinstance(x, str)):
+    x = str(x)
+  for i in range(len(x)):
+    if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
+      x.pop(i)
+      i -= 1
+  return float(x)
+
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
   # Expression is a list of digits and operations.
@@ -147,7 +156,7 @@ if (eqn_str):
 
 x = st.session_state.x
 if (x):
-  x = float(x)
+  x = to_float(x)
 
 if (eqn_str and x):
   st.write(evaluate(str_to_eqn(eqn_str), x))
