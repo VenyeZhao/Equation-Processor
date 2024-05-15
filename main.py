@@ -5,15 +5,6 @@ import pandas as pd
 st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
 
-
-if "df" not in st.session_state:
-  st.session_state.df = pd.DataFrame(np.random.randn(20, 2), columns=["x", "y"])
-
-st.header("Choose a datapoint color")
-color = st.color_picker("Color", "#FF0000")
-st.divider()
-st.scatter_chart(st.session_state.df, x="x", y="y", color=color)
-
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
   # Expression is a list of digits and operations.
@@ -147,4 +138,13 @@ def evaluate(eqn, x):
   val = eqn[0]
   return val
 
-st.write(evaluate(str_to_eqn(str(st.session_state.eqn)), float(st.session_state.x)))
+eqn_str = st.session_state.eqn
+if (eqn_str):
+  eqn_str = str(eqn_str)
+
+x = st.session_state.x
+if (x):
+  x = float(x)
+
+if (eqn_str and x):
+  st.write(evaluate(str_to_eqn(eqn_str), x))
