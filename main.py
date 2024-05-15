@@ -159,7 +159,7 @@ if (eqn_str):
 
 x = st.session_state.x
 if (x):
-  x = to_float(x)
+  x = float(x)
 
 if (eqn_str and x):
   st.write(evaluate(str_to_eqn(eqn_str), x))
