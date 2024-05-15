@@ -120,9 +120,9 @@ def evaluate(eqn, x):
       eqn.pop(i)
       eqn.pop(i)
       i -= 2
-    elif (isinstance(eqn[i], float) or isinstance(eqn[i], int)) and (isinstance(eqn[i + 1], float) or isinstance(eqn[i + 1], int)):
-      eqn[i] = eqn[i] * eqn[i + 1]
-      eqn.pop(i + 1)
+    #elif (isinstance(eqn[i], float) or isinstance(eqn[i], int)) and (isinstance(eqn[i + 1], float) or isinstance(eqn[i + 1], int)):
+      #eqn[i] = eqn[i] * eqn[i + 1]
+      #eqn.pop(i + 1)
     i += 1
   # Addition and Subtraction
   i = 0
