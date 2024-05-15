@@ -6,7 +6,7 @@ st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
 
 def to_float(x):
-  if (!(isinstance(x, str))):
+  if !(isinstance(x, str)):
     x = str(x)
   for i in range(len(x)):
     if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
