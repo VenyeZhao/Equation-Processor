@@ -87,9 +87,7 @@ def evaluate(eqn, x):
       is_digit = True
       num_of_digits = 1
       while (is_digit and i + num_of_digits < len(eqn)):
-        if (ord(list(eqn[i + num_of_digits])[0]) >= 48
-            and ord(list(eqn[i + num_of_digits])[0]) <= 57
-            or ord(list(eqn[i + num_of_digits])[0]) == 46):
+        if (ord(list(eqn[i + num_of_digits])[0]) >= 48 and ord(list(eqn[i + num_of_digits])[0]) <= 57 or ord(list(eqn[i + num_of_digits])[0]) == 46):
           num_of_digits += 1
         else:
           is_digit = False
