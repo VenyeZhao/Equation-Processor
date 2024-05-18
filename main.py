@@ -49,9 +49,9 @@ def str_to_eqn(eqn_str):
       # Iterate until there are the correct number of right parentheses.
       # If the number of right parentheses is equal to the number of left parentheses, then all the parentheses are closed.
       while (num_left != num_right):
-        if (eqn_str[i] == ")"):
+        if (eqn_str[j] == ")"):
           num_right += 1
-        elif (eqn_str[i] == "("):
+        elif (eqn_str[j] == "("):
           num_left += 1
         j += 1
       right_index = j
