@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
 
 st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
@@ -8,17 +10,20 @@ def is_num(x):
     return True
 
 def remove_non_num(x):
-  if not (isinstance(x, str)):
-    x = str(x)
-  i = 0
-  while i < len(x):
-    if not (x[i] == "0" or x[i] == "1" or x[i] == "2" or x[i] == "3" or x[i] == "4" or x[i] == "5" or x[i] == "6" or x[i] == "7" or x[i] == "8" or x[i] == "9" or x[i] == "."):
-      temp = x.split(x[i])
-      x = temp[0]
-      for j in range(1, len(temp)):
-        x += temp[j]
-        i -= 1
-    i += 1
+  if (x != ''):
+    if not (isinstance(x, str)):
+      x = str(x)
+    i = 0
+    while i < len(x):
+      if not (x[i] == "0" or x[i] == "1" or x[i] == "2" or x[i] == "3" or x[i] == "4" or x[i] == "5" or x[i] == "6" or x[i] == "7" or x[i] == "8" or x[i] == "9" or x[i] == "."):
+        temp = x.split(x[i])
+        x = temp[0]
+        for j in range(1, len(temp)):
+          x += temp[j]
+          i -= 1
+      i += 1
+  else:
+    return 0
   return x
 
 # Convert the eqn to a list of digits and operations.
@@ -160,8 +165,31 @@ if (eqn_str):
   eqn_str = str(eqn_str)
 
 x = st.session_state.x
-if (x):
-  x = float(remove_non_num(x))
+x = float(remove_non_num(x))
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
+
+  step = 0.01
+
+  x_range = st.slider("x range", 0.0, 1000.0, 0.0)
+  
+  x_vals = []
+  i = x - x_range
+  while (i < x + x_range):
+    x_vals.append(i)
+    i += step
+  
+  y_vals = []
+  if (len(x_vals) > 0):
+    for x in x_vals:
+      y_vals.append(evaluate(str_to_eqn(eqn_str), x))
+  
+  chart_data = pd.DataFrame(
+    {
+      "x": x_vals,
+      "y": y_vals,
+      
+    }
+  )
+  st.line_chart(chart_data, x = "x", y = "y")
