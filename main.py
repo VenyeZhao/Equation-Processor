@@ -7,7 +7,7 @@ def is_num(x):
   if (isinstance(x, float)):
     return True
 
-def remove_non_num(x):
+"""def remove_non_num(x):
   if not (isinstance(x, str)):
     x = str(x)
   i = 0
@@ -19,7 +19,7 @@ def remove_non_num(x):
         st.write(x)
         x += temp[j]
     i += 1
-  return x
+  return x"""
 
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
@@ -162,7 +162,7 @@ if (eqn_str):
 
 x = st.session_state.x
 if (x):
-  x = float(remove_non_num((x)))
+  x = float(x)#float(remove_non_num((x)))
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
