@@ -12,7 +12,7 @@ def remove_non_num(x):
     x = str(x)
   i = 0
   while i < len(x):
-    if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
+    if (x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and x[i] != "."):
       temp = x.split(x[i], 1)
       x = temp[0]
       for j in range(2, len(temp)):
