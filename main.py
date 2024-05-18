@@ -70,10 +70,10 @@ def str_to_eqn(eqn_str):
     elif (eqn_str[i] == "x"):
       expression.append("x")
     else:
-      temp = x.split(x[i])
-      x = temp[0]
+      temp = eqn_str.split(x[i])
+      eqn_str = temp[0]
       for j in range(1, len(temp)):
-        x += temp[j]
+        eqn_str += temp[j]
       i -= 1
     i += 1
   return expression
