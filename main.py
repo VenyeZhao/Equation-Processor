@@ -16,6 +16,7 @@ def remove_non_num(x):
       temp = x.split(x[i])
       x = temp[0]
       for j in range(1, len(temp)):
+        st.write(x)
         x += temp[j]
     i += 1
   return x
