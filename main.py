@@ -165,6 +165,3 @@ if (x):
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
-
-if (eqn_str and x):
-  st.subheader(evaluate(str_to_eqn(eqn_str), x))
