@@ -7,19 +7,19 @@ def is_num(x):
   if (isinstance(x, float)):
     return True
 
-"""def remove_non_num(x):
+def remove_non_num(x):
   if not (isinstance(x, str)):
     x = str(x)
   i = 0
   while i < len(x):
-    if (x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and x[i] != "."):
-      temp = x.split(x[i], 1)
+    if not (x[i] == "0" or x[i] == "1" or x[i] == "2" or x[i] == "3" or x[i] == "4" or x[i] == "5" or x[i] == "6" or x[i] == "7" or x[i] == "8" or x[i] == "9" or x[i] == "."):
+      temp = x.split(x[i])
       x = temp[0]
-      for j in range(2, len(temp)):
-        st.write(x)
+      for j in range(1, len(temp)):
         x += temp[j]
+        i -= 1
     i += 1
-  return x"""
+  return x
 
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
@@ -83,7 +83,6 @@ def str_to_eqn(eqn_str):
       expression.append("-")
     elif (eqn_str[i] == "x"):
       expression.append("x")
-      i -= 1
     i += 1
   return expression
 
@@ -156,13 +155,17 @@ def evaluate(eqn, x):
   val = eqn[0]
   return val
 
+eqn_str = input("y = ")
+x = float(remove_non_num(input("x = ")))
+print(evaluate(str_to_eqn(eqn_str), x))
+
 eqn_str = st.session_state.eqn
 if (eqn_str):
   eqn_str = str(eqn_str)
 
 x = st.session_state.x
 if (x):
-  x = float(x)#float(remove_non_num((x)))
+  x = float(remove_non_num((x)))
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
