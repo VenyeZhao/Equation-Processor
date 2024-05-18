@@ -10,7 +10,7 @@ def is_num(x):
 def to_float(x):
   if not (isinstance(x, str)):
     x = str(x)
-  for i in range(len(x)):
+  for i in range(len(x) - 1):
     if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
       temp = x.split(x[i])
       x = temp[0]
