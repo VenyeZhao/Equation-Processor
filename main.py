@@ -155,17 +155,16 @@ def evaluate(eqn, x):
   val = eqn[0]
   return val
 
-eqn_str = input("y = ")
-x = float(remove_non_num(input("x = ")))
-print(evaluate(str_to_eqn(eqn_str), x))
-
 eqn_str = st.session_state.eqn
 if (eqn_str):
   eqn_str = str(eqn_str)
 
 x = st.session_state.x
 if (x):
-  x = float(remove_non_num((x)))
+  x = float(remove_non_num(x))
+
+if (eqn_str and x):
+  st.subheader(evaluate(str_to_eqn(eqn_str), x))
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
