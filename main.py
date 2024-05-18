@@ -146,7 +146,7 @@ if (eqn_str):
   eqn_str = str(eqn_str)
 
 x = st.session_state.x
-if (x):
+if (is_num(x)):
   x = float(x)
 
 if (eqn_str and x):
