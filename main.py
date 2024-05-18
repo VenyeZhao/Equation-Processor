@@ -1,23 +1,11 @@
 import streamlit as st
-import numpy as np
-import pandas as pd
-
-st.write("This was created by Venye Zhao. It is a simple equation processor that takes in an input equation and value for the variable before calculating the result.")
 
 st.text_input("y = ", key = "eqn")
 st.text_input("x = ", key = "x")
 
-#def to_float(x):
-  #if not (isinstance(x, str)):
-    #x = str(x)
-  #for i in range(len(x)):
-    #if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
-      #temp = x.split(x[i])
-      #x = temp[0]
-      #for j in range(1, len(temp)):
-        #x += temp[j]
-      #i -= 1
-  #return float(x)
+def is_num(x):
+  if (isinstance(x, float)):
+    return True
 
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
@@ -61,9 +49,9 @@ def str_to_eqn(eqn_str):
       # Iterate until there are the correct number of right parentheses.
       # If the number of right parentheses is equal to the number of left parentheses, then all the parentheses are closed.
       while (num_left != num_right):
-        if (eqn_str[j] == ")"):
+        if (eqn_str[i] == ")"):
           num_right += 1
-        elif (eqn_str[j] == "("):
+        elif (eqn_str[i] == "("):
           num_left += 1
         j += 1
       right_index = j
@@ -114,7 +102,7 @@ def evaluate(eqn, x):
     i += 1
   # Exponentiation
   i = 0
-  while (i < len(eqn)):
+  while (i < len(eqn) - 1):
     if (eqn[i] == '^'):
       eqn[i - 1] **= eqn[i + 1]
       eqn.pop(i)
@@ -123,7 +111,7 @@ def evaluate(eqn, x):
     i += 1
   # Multiplication and Division
   i = 0
-  while (i < len(eqn)):
+  while (i < len(eqn) - 1):
     if (eqn[i] == '*'):
       eqn[i - 1] *= eqn[i + 1]
       eqn.pop(i)
@@ -134,13 +122,13 @@ def evaluate(eqn, x):
       eqn.pop(i)
       eqn.pop(i)
       i -= 2
-    #elif (isinstance(eqn[i], float) or isinstance(eqn[i], int)) and (isinstance(eqn[i + 1], float) or isinstance(eqn[i + 1], int)):
-      #eqn[i] = eqn[i] * eqn[i + 1]
-      #eqn.pop(i + 1)
+    elif (is_num(eqn[i]) and is_num(eqn[i + 1])):
+      eqn[i] = eqn[i] * eqn[i + 1]
+      eqn.pop(i + 1)
     i += 1
   # Addition and Subtraction
   i = 0
-  while (i < len(eqn)):
+  while (i < len(eqn) - 1):
     if (eqn[i] == '+'):
       eqn[i - 1] += eqn[i + 1]
       eqn.pop(i)
