@@ -69,6 +69,8 @@ def str_to_eqn(eqn_str):
       expression.append("-")
     elif (eqn_str[i] == "x"):
       expression.append("x")
+    else:
+      res_str = str[:i] +  str[i + 1:]
     i += 1
   return expression
 
