@@ -7,16 +7,18 @@ def is_num(x):
   if (isinstance(x, float)):
     return True
 
-def to_float(x):
+def remove_non_num(x):
   if not (isinstance(x, str)):
     x = str(x)
-  for i in range(len(x)):
+  i = 0
+  while i < len(x):
     if (x[i] != "0" or x[i] != "1" or x[i] != "2" or x[i] != "3" or x[i] != "4" or x[i] != "5" or x[i] != "6" or x[i] != "7" or x[i] != "8" or x[i] != "9" or x[i] != "."):
       temp = x.split(x[i])
       x = temp[0]
       for j in range(1, len(temp)):
         x += temp[j]
-  return float(x)
+    i += 1
+  return x
 
 # Convert the eqn to a list of digits and operations.
 def str_to_eqn(eqn_str):
@@ -159,7 +161,7 @@ if (eqn_str):
 
 x = st.session_state.x
 if (x):
-  x = to_float(x)
+  x = float(remove_non_num((x)))
 
 if (eqn_str and x):
   st.subheader(evaluate(str_to_eqn(eqn_str), x))
